@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package review;
+
+service Review {
+  rpc Create(ReviewWithoutId) returns (ReviewWithId);
+  rpc Get(Id) returns (ReviewWithId);
+  rpc List(ListOptions) returns (stream ReviewWithIdSimple);
+}
+
+message ListOptions {
+  int32 page = 1;
+  int32 count =2;
+}
+
+message Id {
+  string id = 1;
+}
+
+message ReviewWithIdSimple {
+  string id = 1;
+  string release = 2;
+  string artist = 3;
+  int32 year = 4;
+  string author = 5;
+}
+
+message ReviewWithoutId {
+  string release = 1;
+  string artist = 2;
+  int32 year = 3;
+  string article = 4;
+  string author = 5;
+}
+
+message ReviewWithId {
+  string id = 1;
+  string release = 2;
+  string artist = 3;
+  int32 year = 4;
+  string article = 5;
+  string author = 6;
+}
